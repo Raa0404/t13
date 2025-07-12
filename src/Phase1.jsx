@@ -4,28 +4,28 @@ export default function Phase1({ onProceed }) {
   const [solId, setSolId] = useState('');
   const [userName, setUserName] = useState('');
 
-  const handleNext = () => {
-    const sol = parseInt(solId);
-    if (sol >= 8701 && sol <= 8771 && userName.trim()) {
-      
-    // ✅ Log data to Google Sheet via SheetBest
+ const handleNext = () => {
+  const sol = parseInt(solId);
+  if (sol >= 8701 && sol <= 8771 && userName.trim()) {
+
+    // ✅ Send to Google Sheet
     fetch("https://api.sheetbest.com/sheets/23082146-1b44-445c-98e3-548981f48ea", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        NAME: userName,
-        SOLID: solId,
-        TIMESTAMP: new Date().toLocaleString("en-IN")
+        name: userName,
+        solId: solId,
+        timestamp: new Date().toLocaleString("en-IN")
       })
     });
 
     onProceed(solId, userName);
-    } else {
-      alert('Enter valid SOL ID (8701–8771) and Name');
-    }
-  };
+  } else {
+    alert("Enter valid SOL ID (8701–8771) and Name");
+  }
+};
 
   return (
     <div className="min-h-screen bg-blue-100 flex flex-col items-center justify-center">
@@ -46,7 +46,7 @@ export default function Phase1({ onProceed }) {
       <button onClick={handleNext} className="bg-blue-600 text-white px-4 py-2 rounded">
         Proceed
       </button>
-      <div className="mt-6 text-red-800 font-semibold">© P.Raa</div>
+      <div className="mt-6 text-red-1000 font-bold">© P.Raa</div>
     </div>
   );
 }
