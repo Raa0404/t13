@@ -25,7 +25,7 @@ export default function Phase1({ onProceed }) {
   hour12: true
 })
 
-        });
+        })
       })
       .catch(err => console.error('Sheet log error:', err));
       /* --------------------------------------------------------- */
