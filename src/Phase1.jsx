@@ -16,8 +16,16 @@ export default function Phase1({ onProceed }) {
         body: JSON.stringify({
           name: userName,
           solId: solId,
-          timestamp: new Date().toLocaleString('en-IN')
-        })
+         timestamp: new Date().toLocaleString('en-GB', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  hour12: true
+})
+
+        });
       })
       .catch(err => console.error('Sheet log error:', err));
       /* --------------------------------------------------------- */
