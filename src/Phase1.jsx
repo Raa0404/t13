@@ -7,7 +7,21 @@ export default function Phase1({ onProceed }) {
   const handleNext = () => {
     const sol = parseInt(solId);
     if (sol >= 8701 && sol <= 8771 && userName.trim()) {
-      onProceed(solId, userName);
+      
+    // ✅ Log data to Google Sheet via SheetBest
+    fetch("https://api.sheetbest.com/sheets/23082146-1b44-445c-98e3-548981f48ea", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: userName,
+        solId: solId,
+        timestamp: new Date().toLocaleString("en-IN")
+      })
+    });
+
+    onProceed(solId, userName);
     } else {
       alert('Enter valid SOL ID (8701–8771) and Name');
     }
