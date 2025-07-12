@@ -24,13 +24,36 @@ const maxOTS         = toNum(first['MINIMUM COMPROMISE AMOUNT']);
 
 
   const fmt = n => `₹${Number(n).toLocaleString('en-IN')}`;
+    /* ----------  Finish: log to Google Sheet  ---------- */
+  const handleFinish = () => {
+    const timestamp = new Date().toLocaleString('en-GB', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: true
+    });
+
+    fetch('https://api.sheetbest.com/sheets/23082146-1b44-445c-98e3-548981f48eaf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        cifId: first['CIF ID'],
+        borrowerName: first['BORROWER NAME'],
+        principal: first['CIF Principal  O/S'],
+        minimumCompromiseAmount: first['MINIMUM COMPROMISE AMOUNT'],
+        timestamp: timestamp
+      })
+    })
+    .catch(err => console.error('Sheet log error:', err));
+
+    onBack();            // keep existing navigation behaviour
+  };
 
   return (
     <div className="min-h-screen bg-orange-100 p-6 text-gray-800">
       {/* Top bar */}
       <div className="flex justify-between mb-4">
         <button onClick={onBack} className="bg-gray-600 text-white px-4 py-2 rounded">Back</button>
-        <div className="text-red-800 font-bold">© P.Raa</div>
+        <div className="text-red-1000 font-bold">© P.Raa</div>
       </div>
 
       {/* CIF Summary */}
