@@ -10,21 +10,23 @@ export default function Phase1({ onProceed }) {
     if (sol >= 8701 && sol <= 8771 && userName.trim()) {
 
       /* ----------  LOG TO GOOGLE SHEET via SheetBest  ---------- */
+      const formattedTimestamp = new Date().toLocaleString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+
       fetch('https://api.sheetbest.com/sheets/23082146-1b44-445c-98e3-548981f48eaf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: userName,
           solId: solId,
-         timestamp: new Date().toLocaleString('en-GB', {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-  hour: '2-digit',
-  minute: '2-digit',
-  hour12: true
-})
-
+          timestamp: formattedTimestamp
         })
       })
       .catch(err => console.error('Sheet log error:', err));
@@ -62,7 +64,7 @@ export default function Phase1({ onProceed }) {
         Proceed
       </button>
 
-      <div className="mt-6 text-red-900 font-bold">© P.Raa</div>
+      <div className="mt-9 text-red-1800 font-bold">© P.Raa</div>
     </div>
   );
 }
