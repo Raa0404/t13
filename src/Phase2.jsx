@@ -14,7 +14,7 @@ export default function Phase2({ solId, userName, onBack, onProceed }) {
 
   const handleSearch = () => {
     const match = allAccounts.find(
-      acc => acc['ACCOUNT NUMBER'] === accountNumber
+     acc['ACCOUNT NO.']?.toString() === accountNumber.trim()
     );
     if (match) {
       const related = allAccounts.filter(
@@ -35,7 +35,7 @@ export default function Phase2({ solId, userName, onBack, onProceed }) {
         >
           Back
         </button>
-        <div className="text-red-1200 font-bold">© P.Raa</div>
+        <div className="text-red-900 font-bold">© P.Raa</div>
       </div>
 
       <h2 className="text-xl font-bold mt-4">
