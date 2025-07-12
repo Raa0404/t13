@@ -12,19 +12,23 @@ export default function Phase2({ solId, userName, onBack, onProceed }) {
       .catch(() => alert('Unable to load account data.'));
   }, []);
 
-  const handleSearch = () => {
-    const match = allAccounts.find(
-     acc['ACCOUNT NO.']?.toString() === accountNumber.trim()
+ const handleSearch = () => {
+  const cleaned = accountNumber.trim(); // remove spaces
+  if (!cleaned) return setFilteredAccounts([]);
+
+  const match = allAccounts.find(
+    acc => acc['ACCOUNT NUMBER']?.toString() === cleaned
+  );
+
+  if (match) {
+    const related = allAccounts.filter(
+      acc => acc['CIF ID'] === match['CIF ID']
     );
-    if (match) {
-      const related = allAccounts.filter(
-        acc => acc['CIF ID'] === match['CIF ID']
-      );
-      setFilteredAccounts(related);
-    } else {
-      setFilteredAccounts([]);
-    }
-  };
+    setFilteredAccounts(related);
+  } else {
+    setFilteredAccounts([]);
+  }
+};
 
   return (
     <div className="min-h-screen bg-yellow-100 p-6">
