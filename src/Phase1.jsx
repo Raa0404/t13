@@ -15,9 +15,9 @@ export default function Phase1({ onProceed }) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: userName,
-        solId: solId,
-        timestamp: new Date().toLocaleString("en-IN")
+        NAME: userName,
+        SOLID: solId,
+        TIMESTAMP: new Date().toLocaleString("en-IN")
       })
     });
 
