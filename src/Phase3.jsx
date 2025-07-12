@@ -18,16 +18,10 @@ export default function Phase3({ accountData = [], onBack }) {
   /* ----------  Totals: only sum Sacrifice / Max OTS  ---------- */
   const toNum = v => Number(v) || 0;
 
-  const { sacrificeTotal, maxOTS } = useMemo(() => {
-    return accountData.reduce(
-      (acc, row) => {
-        acc.sacrificeTotal += toNum(row['SACRIFICE']);
-        acc.maxOTS = Math.max(acc.maxOTS, toNum(row['MINIMUM COMPROMISE AMOUNT']));
-        return acc;
-      },
-      { sacrificeTotal: 0, maxOTS: 0 }
-    );
-  }, [accountData]);
+// 🔧 Use first account only
+const sacrificeTotal = toNum(first['SACRIFICE']);
+const maxOTS         = toNum(first['MINIMUM COMPROMISE AMOUNT']);
+
 
   const fmt = n => `₹${Number(n).toLocaleString('en-IN')}`;
 
@@ -49,7 +43,7 @@ export default function Phase3({ accountData = [], onBack }) {
       <div className="bg-white shadow p-4 mt-4 rounded space-y-2">
         <p><strong>CIF CURRENT O/S:</strong> {fmt(first['CIF CURRENT O/S'])}</p>
         <p><strong>CIF PRINCIPAL O/S:</strong> {fmt(first['CIF PRINCIPAL O/S'])}</p>
-        <p><strong>SACRIFICE (Total):</strong> {fmt(sacrificeTotal)}</p>
+       <p><strong>SACRIFICE:</strong> {fmt(sacrificeTotal)}</p>
         <p><strong>MINIMUM OTS AMOUNT:</strong> {fmt(maxOTS)}</p>
       </div>
 
