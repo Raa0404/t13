@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 export default function Phase1({ onProceed }) {
@@ -9,13 +10,13 @@ export default function Phase1({ onProceed }) {
     if (sol >= 8701 && sol <= 8771 && userName.trim()) {
 
       /* ----------  LOG TO GOOGLE SHEET via SheetBest  ---------- */
-      fetch('https://api.sheetbest.com/sheets/23082146-1b44-445c-98e3-548981f48ea', {
+      fetch('https://api.sheetbest.com/sheets/23082146-1b44-445c-98e3-548981f48eaf', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: userName,       //  ⇦ matches column A header “name”
-          solId: solId,         //  ⇦ matches column B header “solId”
-          timestamp: new Date().toLocaleString('en-IN') // column C “timestamp”
+          name: userName,
+          solId: solId,
+          timestamp: new Date().toLocaleString('en-IN')
         })
       })
       .catch(err => console.error('Sheet log error:', err));
@@ -53,7 +54,7 @@ export default function Phase1({ onProceed }) {
         Proceed
       </button>
 
-      <div className="mt-6 text-red-1800 font-bold">© P.Raa</div>
+      <div className="mt-6 text-red-900 font-bold">© P.Raa</div>
     </div>
   );
 }
