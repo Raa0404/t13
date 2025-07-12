@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
+import RAABOTIntro from './RAABOTIntro';
 import Phase1 from './Phase1';
 import Phase2 from './Phase2';
 import Phase3 from './Phase3';
 
 function App() {
-  const [phase, setPhase] = useState(1);
+  const [phase, setPhase] = useState(0);
   const [solId, setSolId] = useState('');
   const [userName, setUserName] = useState('');
   const [cifData, setCifData] = useState([]);
 
   return (
     <>
-      {phase === 1 && (
+      {phase === 0 && (
+        <RAABOTIntro onFinish={() => setPhase(1)} />
+       )}
+       
+       {phase === 1 && (
         <Phase1
           onProceed={(sol, name) => {
             setSolId(sol);
