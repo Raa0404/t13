@@ -36,7 +36,7 @@ export default function Phase1({ onProceed }) {
 
   return (
     <div className="min-h-screen bg-blue-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-800 mb-6">OTS NIVARAN</h1>
+      <h1 className="text-6xl font-bold text-red-1800 mb-8">OTS nivaRANA</h1>
 
       <input
         className="border p-2 rounded mb-4 w-64"
