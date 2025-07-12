@@ -50,7 +50,7 @@ export default function Phase3({ accountData = [], onBack }) {
         <p><strong>CIF CURRENT O/S:</strong> {fmt(first['CIF CURRENT O/S'])}</p>
         <p><strong>CIF PRINCIPAL O/S:</strong> {fmt(first['CIF PRINCIPAL O/S'])}</p>
         <p><strong>SACRIFICE (Total):</strong> {fmt(sacrificeTotal)}</p>
-        <p><strong>MAXIMUM OTS AMOUNT:</strong> {fmt(maxOTS)}</p>
+        <p><strong>MINIMUM OTS AMOUNT:</strong> {fmt(maxOTS)}</p>
       </div>
 
       {/* Finish */}
